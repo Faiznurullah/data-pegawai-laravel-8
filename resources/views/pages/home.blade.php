@@ -21,7 +21,7 @@
            
 
             <div class="table-responsive mt-4">
-            <table id="tabel-data" class="table table-bordered" id="dataTable" width="100%" >
+            <table id="tabel-data" class="table table-bordered"  width="100%" >
                 <thead>
                   <tr>
                     <th>No</th>

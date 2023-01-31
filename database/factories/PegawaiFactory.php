@@ -18,7 +18,7 @@ class PegawaiFactory extends Factory
         return [
             'nama' => $this->faker->name(),
             'alamat' => $this->faker->address(),
-            'gender' => $this->faker->title($gender = null|'male'|'female')
+            'gender' => $this->faker->randomElement($array = array('pria', 'wanita')),
          ];
     }
 }

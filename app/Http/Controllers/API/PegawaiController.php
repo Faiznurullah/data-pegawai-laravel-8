@@ -11,8 +11,6 @@ use App\Http\Requests\PegawaiRequest;
 class PegawaiController extends Controller
 {
 
-
-
     function get($id = null)
     {
         if (isset($id)) {

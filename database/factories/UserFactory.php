@@ -32,7 +32,7 @@ class UserFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'email_verified_at' => null,
+                'email_verified_at' => now(),
             ];
         });
     }

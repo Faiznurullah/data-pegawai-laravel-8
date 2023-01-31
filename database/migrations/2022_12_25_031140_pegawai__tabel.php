@@ -17,7 +17,7 @@ class PegawaiTabel extends Migration
             $table->bigIncrements('id');
             $table->string('nama', 100);
             $table->longtext('alamat');
-            $table->string('gender', 50);
+            $table->string('gender', 50)->nullable();
             $table->timestamps();
         });
     }
