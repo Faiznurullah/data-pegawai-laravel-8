@@ -21,7 +21,7 @@
            
 
             <div class="table-responsive mt-4">
-            <table id="tabel-data" class="table table-bordered"  width="100%" >
+            <table id="tabel-data" class="table table-bordered yajra-datatable"  width="100%">
                 <thead>
                   <tr>
                     <th>No</th>
@@ -33,20 +33,7 @@
                 </thead>
                 <tbody>
 
-                  <?php $no = 1; ?>          
-                  @foreach($data_pegawai as $row)
-                               <tr>
-                                   <td>{{ $no++ }}</td>
-                                   <td>{{ $row->nama }}</td>
-                                   <td>{{ $row->alamat }}</td>
-                                   <td>{{ $row->gender }}</td>
-                                   <td>
-                                       <a href="/edit/{{ $row->id }}" type="button" class="btn btn-info text-white btn-sm mt-2">Ubah</a>
-                                       <a href="/detail/{{ $row->id }}" type="button" class="btn btn-warning text-white btn-sm mt-2">detail</a>
-                                       <a href="/hapus/{{ $row->id }}" type="button" class="btn btn-danger btn-sm mt-2" onclick = "return confirm('Yakin Data Akan Dihapus');">Hapus</a>
-                                   </td>
-                               </tr>
-                @endforeach
+                  
 
                 </tbody>
               </table>
@@ -56,5 +43,34 @@
       </div>
  </div>
 
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+          
+          var table = $('.yajra-datatable').DataTable({
+              processing: true,
+              serverSide: true,
+              ajax: "{{ route('index') }}",
+              columns: [
+                  {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                  {data: 'nama', name: 'nama'},
+                  {data: 'alamat', name: 'alamat'},
+                  {data: 'gender', name: 'gender'}, 
+                  {
+                      data: 'action', 
+                      name: 'action', 
+                      orderable: true, 
+                      searchable: true
+                  },
+              ]
+          });
+          
+        });
+    </script>
 
 @endsection

@@ -1,20 +1,38 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Pegawai;
+use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 
 class PagesController extends Controller
 {
     
-    
-    
-    public function index() {
+     
+    public function index(Request $request) {
 
-      
+        if ($request->ajax()) {
+            $data = Pegawai::latest()->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+
+                         $url_edit = url('edit/'.$row->id);
+                         $url_detail = url('detail/'.$row->id);
+                         $url_hapus = url('hapus/'.$row->id);
+
+                    $actionBtn = '<a href="'.$url_edit.'" class="edit btn btn-success btn-sm">Edit</a>
+                    <a href="'.$url_detail.'" class="edit btn btn-info text-white btn-sm">detail</a>
+                    <a href="'.$url_hapus.'" class="delete btn btn-danger btn-sm">Delete</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+    
           return view('pages.home', [
             'data_pegawai' => Pegawai::all()
            ]);
@@ -69,7 +87,7 @@ class PagesController extends Controller
                 'gender' => request('gender')
             ]);
      
-        return redirect('/home')->with('Pesan', 'Data Sukses Dikirim');
+        return redirect('/')->with('Pesan', 'Data Sukses Dikirim');
      
          }
 
@@ -119,7 +137,7 @@ class PagesController extends Controller
              ]);
 
 
-        return redirect('/home')->with('Pesan', 'Data Sukses Diedit');
+        return redirect('/')->with('Pesan', 'Data Sukses Diedit');
     }
 
 

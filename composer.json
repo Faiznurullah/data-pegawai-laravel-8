@@ -13,7 +13,8 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "*",
         "laravel/tinker": "^2.5",
-        "phpoffice/phpspreadsheet": "dev-NumberFormatMask-Helpers"
+        "phpoffice/phpspreadsheet": "dev-NumberFormatMask-Helpers",
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

@@ -34,7 +34,7 @@ class ExportPdf implements ShouldQueue
      */
     public function handle()
     {
-        $x = DB::table('pegawai')->get();
+        $x = Pegawai::latest()->take(100)->get();
         view()->share('pegawai', $x);
         $pdf = PDF::loadview('export.data-pdf')->setPaper('a4', 'portrait');
         return $pdf->download('data-pegawai.pdf');

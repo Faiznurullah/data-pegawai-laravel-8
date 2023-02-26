@@ -13,7 +13,10 @@ class ExportController extends Controller
 {
     
    public function downloadpdf(){
-      dispatch(new ExportPdf());
+       $x = Pegawai::latest()->take(1000)->get();
+        view()->share('pegawai', $x);
+        $pdf = PDF::loadview('export.data-pdf')->setPaper('a4', 'portrait');
+        return $pdf->download('data-pegawai.pdf');
    }
 
 }
